@@ -1,0 +1,13 @@
+{
+  "category": "config_error",
+  "forbidden_claims": [
+    "oomkilled",
+    "insufficient cpu",
+    "imagepullbackoff"
+  ],
+  "must_mention": [
+    "search-settings",
+    "not found",
+    "CreateContainerConfigError"
+  ]
+}

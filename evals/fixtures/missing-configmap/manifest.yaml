@@ -1,0 +1,8 @@
+name: missing-configmap
+title: 'CreateContainerConfigError: configmap not found'
+description: A ConfigMap was renamed in the last release, so the reference no longer
+  resolves.
+namespace: shop
+screenshot: screenshot.png
+logs: logs.txt
+expected: expected.json

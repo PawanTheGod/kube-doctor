@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storefront
+  namespace: shop
+spec:
+  template:
+    spec:
+      containers:
+        - name: web
+          image: registry.example.com/storefront:1.14.2   # 1.14.2 was never pushed
+          imagePullPolicy: IfNotPresent

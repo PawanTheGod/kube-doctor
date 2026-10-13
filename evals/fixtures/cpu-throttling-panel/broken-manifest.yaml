@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-api
+  namespace: payments
+spec:
+  template:
+    spec:
+      containers:
+        - name: api
+          image: registry.example.com/payments-api:4.6.2
+          resources:
+            limits:
+              cpu: 500m

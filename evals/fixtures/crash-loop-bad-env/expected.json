@@ -1,0 +1,13 @@
+{
+  "category": "crash_loop_app_error",
+  "forbidden_claims": [
+    "out of memory",
+    "image pull",
+    "insufficient cpu"
+  ],
+  "must_mention": [
+    "DATABASE_URL",
+    "CrashLoopBackOff",
+    "exit code 1"
+  ]
+}

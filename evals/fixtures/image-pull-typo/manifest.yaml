@@ -1,0 +1,8 @@
+name: image-pull-typo
+title: ErrImagePull on a mistyped tag
+description: The deployment references tag 1.14.2, which was never pushed; only 1.14.1
+  exists.
+namespace: shop
+screenshot: screenshot.png
+logs: logs.txt
+expected: expected.json

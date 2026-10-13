@@ -1,0 +1,12 @@
+{
+  "category": "resource_throttling",
+  "forbidden_claims": [
+    "oomkilled",
+    "imagepullbackoff",
+    "crashloopbackoff"
+  ],
+  "must_mention": [
+    "0.5",
+    "throttl"
+  ]
+}

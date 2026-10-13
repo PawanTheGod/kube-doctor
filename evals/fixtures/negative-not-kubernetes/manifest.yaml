@@ -1,0 +1,7 @@
+name: negative-not-kubernetes
+title: 'Negative: a photo of a spreadsheet, not a cluster'
+description: A spreadsheet screenshot; the model must say it is not Kubernetes-related.
+namespace: (none)
+screenshot: screenshot.png
+logs: null
+expected: expected.json

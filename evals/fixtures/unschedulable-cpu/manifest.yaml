@@ -1,0 +1,8 @@
+name: unschedulable-cpu
+title: 'Pending: 0/2 nodes are available: insufficient cpu'
+description: The rollout requests 4 CPUs; the only node offers 2 allocatable after
+  system reservation.
+namespace: payments
+screenshot: screenshot.png
+logs: logs.txt
+expected: expected.json

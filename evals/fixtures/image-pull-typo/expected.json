@@ -1,0 +1,13 @@
+{
+  "category": "image_pull",
+  "forbidden_claims": [
+    "oomkilled",
+    "crashloopbackoff",
+    "insufficient memory"
+  ],
+  "must_mention": [
+    "1.14.2",
+    "manifest unknown",
+    "ImagePullBackOff"
+  ]
+}

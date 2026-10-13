@@ -1,0 +1,11 @@
+{
+  "category": "unknown",
+  "forbidden_claims": [
+    "oomkilled",
+    "imagepullbackoff",
+    "unschedulable",
+    "probe"
+  ],
+  "must_mention": [],
+  "negative": true
+}

@@ -1,0 +1,13 @@
+{
+  "category": "unschedulable",
+  "forbidden_claims": [
+    "oomkilled",
+    "imagepullbackoff",
+    "probe"
+  ],
+  "must_mention": [
+    "insufficient cpu",
+    "FailedScheduling",
+    "Pending"
+  ]
+}

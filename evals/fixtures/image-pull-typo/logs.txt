@@ -1,0 +1,3 @@
+# no application logs: the container never started.
+# last lines of the kubelet log for the node running this pod
+2026-02-01T09:22:14.882Z kubelet  failed to pull and unpack image: manifest unknown

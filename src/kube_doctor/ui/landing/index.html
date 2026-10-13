@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kube Snapshot Doctor — Understand what broke. Know what to investigate next.</title>
+<meta name="description" content="Diagnose Kubernetes problems from a screenshot plus optional logs. Evidence-backed findings, ranked causes, read-only next steps. Never connects to a cluster, never runs commands.">
+<meta property="og:title" content="Kube Snapshot Doctor">
+<meta property="og:description" content="Evidence-based Kubernetes diagnostics from a screenshot. Read-only by design.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+<noscript><style>.reveal,.hero .reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav-row">
+    <a class="wordmark" href="#top" aria-label="Kube Snapshot Doctor home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="4" width="24" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="16" cy="16" r="4.5" fill="currentColor"/></svg>
+      <span>Kube Snapshot Doctor</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#product">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#safety">Safety</a>
+      <a href="https://github.com/AdiB1619/kube-snapshot-doctor">GitHub</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-dark" href="/workspace">Open Diagnostic Workspace</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile" id="mobileMenu" aria-label="Mobile" hidden>
+    <a href="#product">Product</a>
+    <a href="#how">How it works</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#safety">Safety</a>
+    <a href="https://github.com/AdiB1619/kube-snapshot-doctor">GitHub</a>
+    <a class="btn btn-dark" href="/workspace">Open Diagnostic Workspace</a>
+  </nav>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Kubernetes diagnostics</p>
+      <h1 class="reveal d1">Understand what broke. Know what to investigate next.</h1>
+      <p class="lede reveal d2">Kubernetes troubleshooting, made clearer. Analyze screenshots
+      and logs to uncover potential failure modes, understand the evidence, and find
+      your next investigative step.</p>
+      <div class="cta-row reveal d3">
+        <a class="btn btn-dark btn-lg" href="/workspace">Diagnose an Issue</a>
+        <a class="btn btn-ghost btn-lg" href="#how">Explore How It Works</a>
+      </div>
+      <p class="trust reveal d4">Evidence-based diagnostics &middot; No live cluster access
+      &middot; No automatic command execution</p>
+    </div>
+    <div class="hero-visual reveal d3" aria-label="Illustrative diagnostic report preview">
+      <div class="preview" role="img" aria-label="Illustrative demo report for an ImagePullBackOff scenario">
+        <div class="preview-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="preview-tag">Illustrative demo</span></div>
+        <div class="preview-body">
+          <p class="preview-eyebrow">Top finding &middot; image_pull &middot; high confidence</p>
+          <p class="preview-title">Image tag does not exist in the registry</p>
+          <p class="preview-ev">evidence: <code>Failed to pull image "checkout:1.2.3"</code></p>
+          <p class="preview-ev">evidence: <code>manifest unknown</code></p>
+          <div class="preview-step"><span class="chip">read-only</span><code>kubectl describe pod checkout-abc</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="section" id="product">
+  <div class="wrap">
+    <p class="eyebrow reveal">Product tour</p>
+    <h2 class="reveal">From pixels to a plan, in two stages</h2>
+    <p class="section-sub reveal">Follow an illustrative <strong>ImagePullBackOff</strong>
+    scenario through the real pipeline. Sample data is labeled demo throughout.</p>
+    <div class="tabs reveal" role="tablist" aria-label="Pipeline stages">
+      <button class="tab active" role="tab" aria-selected="true" data-tab="t-shot">1 · Screenshot</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-evidence">2 · Evidence</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-cause">3 · Cause</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-next">4 · Next step</button>
+    </div>
+    <div class="tabpanels reveal">
+      <div class="tabpanel active" id="t-shot" role="tabpanel">
+        <div class="terminal" aria-label="Illustrative terminal output">
+          <p><span class="dim">$</span> kubectl get pods -n shop</p>
+          <p>NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;READY &nbsp;STATUS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RESTARTS</p>
+          <p>checkout-abc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0/1 &nbsp;&nbsp;&nbsp;<span class="hl">ImagePullBackOff</span> &nbsp;0</p>
+          <p class="dim">— illustrative screenshot input —</p>
+        </div>
+      </div>
+      <div class="tabpanel" id="t-evidence" role="tabpanel" hidden>
+        <ul class="evlist">
+          <li><span class="src">event</span><code>Failed to pull image "checkout:1.2.3": manifest unknown</code></li>
+          <li><span class="src">pod_status</span><code>checkout-abc 0/1 ImagePullBackOff, restarts 0</code></li>
+        </ul>
+        <p class="note">Stage 1 transcribes only what is literally visible. Zero interpretation.</p>
+      </div>
+      <div class="tabpanel" id="t-cause" role="tabpanel" hidden>
+        <p class="cause"><strong>Image tag does not exist in the registry</strong>
+        <span class="chip">image_pull</span> <span class="chip chip-amber">high confidence</span></p>
+        <p class="note">Stage 2 ranks up to three causes, each citing verbatim evidence.</p>
+      </div>
+      <div class="tabpanel" id="t-next" role="tabpanel" hidden>
+        <div class="cmdrow"><span class="chip">read-only</span>
+          <code id="demoCmd">kubectl describe pod checkout-abc</code>
+          <button class="copy" data-copy="demoCmd">Copy</button>
+        </div>
+        <p class="note">Commands are suggested, labeled, and never executed. Anything unsafe is withheld.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="section alt" id="capabilities">
+  <div class="wrap">
+    <p class="eyebrow reveal">Capabilities</p>
+    <h2 class="reveal">Everything in the box, nothing invented</h2>
+    <div class="grid3">
+      <div class="feat reveal"><h3>Screenshot investigation</h3><p>Extract visible pod states, events, error messages, and metric trends from kubectl output, dashboards, and consoles.</p></div>
+      <div class="feat reveal"><h3>Log-assisted diagnosis</h3><p>Combine your logs with screenshot observations. Secrets in log text are redacted before any model call.</p></div>
+      <div class="feat reveal"><h3>Evidence-backed findings</h3><p>Every ranked cause cites verbatim evidence from your input — never an unexplained AI conclusion.</p></div>
+      <div class="feat reveal"><h3>Actionable next steps</h3><p>Investigative recommendations with commands classified read-only or mutating, read-only first.</p></div>
+      <div class="feat reveal"><h3>Safety-first workflow</h3><p>No cluster connection, no command execution. Unsafe suggestions are withheld, not silently dropped.</p></div>
+      <div class="feat reveal"><h3>Flexible backends</h3><p>Gemma through the Gemini API by default, or any OpenAI-compatible vision endpoint. Models are configured, never hardcoded.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="wrap">
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="reveal">Two stages, one report</h2>
+    <ol class="steps">
+      <li class="reveal"><span class="n">01</span><h3>Provide evidence</h3><p>Upload a screenshot and optionally add logs, a namespace, or context about what changed.</p></li>
+      <li class="reveal"><span class="n">02</span><h3>Analyze observations</h3><p>Stage one transcribes what is visible. Stage two reasons from those observations, your logs, and a failure-mode reference.</p></li>
+      <li class="reveal"><span class="n">03</span><h3>Understand the next step</h3><p>Review the summary, ranked causes with evidence, recommended investigations, and missing information.</p></li>
+    </ol>
+    <div class="center reveal"><a class="btn btn-dark btn-lg" href="/workspace">Try the workspace</a></div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="section alt" id="safety">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow reveal">Safety</p>
+      <h2 class="reveal">Read-only is the architecture, not a setting</h2>
+      <ul class="ticks">
+        <li class="reveal">Never connects to a live Kubernetes cluster — there is no cluster client in the codebase.</li>
+        <li class="reveal">Never executes suggested commands — they are strings, linted, labeled, and printed.</li>
+        <li class="reveal">Log text is redacted for tokens, keys, and secrets before any model call.</li>
+        <li class="reveal">Screenshot pixels are <em>not</em> redacted — scrub images before uploading.</li>
+        <li class="reveal">Uncertain cases return <code>unknown</code> with follow-ups instead of a guess.</li>
+        <li class="reveal">Review anything marked mutating before running it yourself.</li>
+      </ul>
+    </div>
+    <div class="boundary reveal" aria-label="Read-only boundary illustration">
+      <div class="b-row"><span>You</span><span class="b-arrow" aria-hidden="true">→</span><span class="b-box">Screenshot + logs</span><span class="b-arrow" aria-hidden="true">→</span><span class="b-box">Diagnosis</span></div>
+      <div class="b-wall">⛔ No path to your cluster. No command execution.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCES -->
+<section class="section" id="audiences">
+  <div class="wrap">
+    <p class="eyebrow reveal">Who it serves</p>
+    <h2 class="reveal">One workspace, three depths</h2>
+    <div class="grid3">
+      <div class="feat reveal"><h3>Beginners</h3><p>Plain-language summaries of errors like CrashLoopBackOff or Pending — no cluster expertise required.</p></div>
+      <div class="feat reveal"><h3>Developers</h3><p>Evidence-linked causes for failed workloads, bad env, missing ConfigMaps, and broken probes.</p></div>
+      <div class="feat reveal"><h3>DevOps &amp; SREs</h3><p>Ranked causes, verbatim evidence, safety-classified commands, and expandable run metadata for nine failure modes — from OOMKilled to DNS.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap center">
+    <h2 class="reveal">Your next Kubernetes investigation starts with the evidence.</h2>
+    <p class="reveal">Begin with a screenshot. Add logs if you have them.</p>
+    <div class="cta-row center reveal">
+      <a class="btn btn-light btn-lg" href="/workspace">Open Diagnostic Workspace</a>
+      <a class="btn btn-outline-light btn-lg" href="https://github.com/AdiB1619/kube-snapshot-doctor">Explore the Repository</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="wordmark sm">Kube Snapshot Doctor</p>
+      <p class="muted">Evidence-based Kubernetes diagnostics. Read-only by design.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#product">Product</a>
+      <a href="/workspace">Workspace</a>
+      <a href="https://github.com/AdiB1619/kube-snapshot-doctor">GitHub</a>
+      <a href="#safety">Safety</a>
+    </nav>
+    <p class="muted">Apache-2.0 · See LICENSE in the repository · Agent Skill included under <code>skills/</code></p>
+  </div>
+</footer>
+<script src="/app.js" defer></script>
+</body>
+</html>

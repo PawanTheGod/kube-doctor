@@ -1,0 +1,2 @@
+# no application logs: the pod was never scheduled, so nothing started.
+2026-02-01T09:31:02.551Z scheduler  FailedScheduling: 0/2 nodes are available: 2 Insufficient cpu.

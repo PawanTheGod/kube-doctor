@@ -1,0 +1,3 @@
+2026-02-01T09:58:11.004Z INFO  payments-api 4.6.2 ready, listening on :8080
+2026-02-01T09:58:42.771Z INFO  GET /v1/charges/8812 200 41ms
+2026-02-01T09:59:03.118Z WARN  p99 latency 1840ms, cpu saturated at limit

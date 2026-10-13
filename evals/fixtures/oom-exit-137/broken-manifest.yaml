@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batch-worker
+  namespace: analytics
+spec:
+  template:
+    spec:
+      containers:
+        - name: worker
+          image: registry.example.com/batch-worker:5.2.1
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: "2"

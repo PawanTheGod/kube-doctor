@@ -1,0 +1,22 @@
+# Keep the image lean; never send secrets or local state into the build context.
+.git/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+*.log
+.DS_Store
+evals/results.local.md
+evals/results.offline.md

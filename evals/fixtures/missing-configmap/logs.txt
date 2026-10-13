@@ -1,0 +1,2 @@
+# no application logs: the container never started.
+2026-02-01T09:33:11.004Z kubelet  Error: configmap "search-settings" not found

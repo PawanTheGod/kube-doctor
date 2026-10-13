@@ -1,0 +1,13 @@
+{
+  "category": "oom_killed",
+  "forbidden_claims": [
+    "crashloopbackoff",
+    "imagepullbackoff",
+    "failedscheduling"
+  ],
+  "must_mention": [
+    "OOMKilled",
+    "137",
+    "256Mi"
+  ]
+}

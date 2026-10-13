@@ -1,0 +1,8 @@
+name: cpu-throttling-panel
+title: 'Grafana: CPU throttling spike on the payments API'
+description: A dashboard panel shows container CPU pinned at its 500m limit with a
+  sawtooth pattern; the container is not being killed, it is being slowed.
+namespace: payments
+screenshot: screenshot.png
+logs: logs.txt
+expected: expected.json

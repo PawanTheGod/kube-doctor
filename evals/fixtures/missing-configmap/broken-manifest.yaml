@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search
+  namespace: shop
+spec:
+  template:
+    spec:
+      volumes:
+        - name: search-config
+          configMap:
+            name: search-settings   # renamed to search-settings-v2
+      containers:
+        - name: search
+          image: registry.example.com/search:1.9.0
+          volumeMounts:
+            - name: search-config
+              mountPath: /etc/search

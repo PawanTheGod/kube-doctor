@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledger
+  namespace: payments
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: ledger
+          image: registry.example.com/ledger:3.1.0
+          resources:
+            requests:
+              cpu: "4"

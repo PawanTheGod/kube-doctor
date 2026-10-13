@@ -1,0 +1,4 @@
+2026-02-01T08:53:05.220Z INFO  worker 5.2.1 starting, 4 partitions assigned
+2026-02-01T08:55:58.771Z WARN  heap 92% used, gc pause 1.4s
+2026-02-01T08:56:09.004Z INFO  partition 3 of 4 loaded
+2026-02-01T08:56:11.330Z WARN  OutOfMemoryError: Java heap space

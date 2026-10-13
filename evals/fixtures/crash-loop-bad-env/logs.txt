@@ -1,0 +1,7 @@
+2026-02-01T09:14:22.101Z INFO  starting checkout 2.4.0
+2026-02-01T09:14:22.103Z INFO  loading configuration
+2026-02-01T09:14:22.104Z FATAL configuration error: DATABASE_URL is not set
+Traceback (most recent call last):
+  File "/app/bootstrap.py", line 41, in <module>
+    settings = load_settings()
+KeyError: 'DATABASE_URL'

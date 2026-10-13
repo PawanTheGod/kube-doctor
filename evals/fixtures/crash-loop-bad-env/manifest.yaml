@@ -1,0 +1,8 @@
+name: crash-loop-bad-env
+title: checkout CrashLoopBackOff after a bad env var rename
+description: The application reads DATABASE_URL at startup, but the ConfigMap key
+  was renamed to DB_URL in a previous release, so the process exits 1 on boot.
+namespace: shop
+screenshot: screenshot.png
+logs: logs.txt
+expected: expected.json

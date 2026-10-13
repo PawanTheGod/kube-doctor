@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout
+  namespace: shop
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: app
+          image: registry.example.com/checkout:2.4.0
+          envFrom:
+            - configMapRef:
+                name: checkout-config   # the ConfigMap only defines DB_URL

@@ -1,0 +1,7 @@
+name: negative-blurry
+title: 'Negative: an unreadable screenshot'
+description: A heavily blurred photograph; there is no evidence to work from.
+namespace: (none)
+screenshot: screenshot.png
+logs: null
+expected: expected.json

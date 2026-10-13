@@ -1,0 +1,8 @@
+name: oom-exit-137
+title: batch worker OOMKilled, exit code 137
+description: The worker's memory limit is 256Mi but the job holds a full partition
+  in memory, so the kernel kills the container.
+namespace: analytics
+screenshot: screenshot.png
+logs: logs.txt
+expected: expected.json
