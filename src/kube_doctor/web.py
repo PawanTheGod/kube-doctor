@@ -56,6 +56,8 @@ _STATIC_FILES: Final[dict[str, tuple[str, str]]] = {
     "styles.css": ("landing", "text/css; charset=utf-8"),
     "app.js": ("landing", "text/javascript; charset=utf-8"),
     "favicon.svg": ("landing", "image/svg+xml"),
+    "logo.png": ("landing", "image/png"),
+    "og-image.png": ("landing", "image/png"),
     "workspace.css": ("workspace", "text/css; charset=utf-8"),
     "workspace.js": ("workspace", "text/javascript; charset=utf-8"),
 }

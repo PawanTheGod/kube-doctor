@@ -51,12 +51,12 @@ _CSS = """
 .ksd-brand { font-size: 15px; font-weight: 650; letter-spacing: -0.01em;
     color: #201d19; }
 .ksd-home { color: inherit; text-decoration: none; }
-.ksd-home:hover { color: #a34e12; }
+.ksd-home:hover { color: #0052ff; }
 .ksd-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
     color: #57534a; border: 1px solid #d8d1bf; border-radius: 999px;
     padding: 6px 12px; background: #fffdf8; white-space: nowrap; }
 .ksd-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
-    color: #a34e12; margin-bottom: 12px; }
+    color: #0052ff; margin-bottom: 12px; }
 .ksd-hero { font-size: 38px; line-height: 1.1; font-weight: 700;
     letter-spacing: -0.025em; color: #201d19; margin: 0 0 12px; }
 .ksd-sub { font-size: 16px; line-height: 1.55; color: #57534a; margin: 0 0
@@ -69,12 +69,12 @@ _CSS = """
     box-shadow: 0 1px 2px rgba(32, 29, 25, 0.05); }
 .ksd-drop { border: 1.5px dashed #c9c1af; border-radius: 14px;
     background: #fbfaf6; }
-.ksd-run button { width: 100%; background: #23201b !important; color:
+.ksd-run button { width: 100%; background: #101c33 !important; color:
     #fffdf8 !important; border-radius: 12px !important; font-size: 16px
     !important; font-weight: 600 !important; padding: 13px !important;
     margin-top: 20px; transition: background 0.2s ease, transform 0.15s
     ease; }
-.ksd-run button:hover { background: #38332b !important; }
+.ksd-run button:hover { background: #24365c !important; }
 .ksd-run button:active { transform: scale(0.995); }
 .ksd-banner { border-radius: 16px; padding: 20px 24px; margin-top: 8px;
     border: 1px solid #e6e0d2; background: #fffdf8;
@@ -85,8 +85,8 @@ _CSS = """
     letter-spacing: -0.015em; color: #201d19; margin-bottom: 8px; }
 .ksd-banner-sub { font-size: 15px; line-height: 1.55; color: #57534a; }
 .ksd-banner-meta { font-size: 12px; color: #857e70; margin-top: 10px; }
-.ksd-banner--ok { border-left: 5px solid #2f6b3a; }
-.ksd-banner--ok .ksd-banner-eyebrow { color: #2f6b3a; }
+.ksd-banner--ok { border-left: 5px solid #01785d; }
+.ksd-banner--ok .ksd-banner-eyebrow { color: #01785d; }
 .ksd-banner--warn { border-left: 5px solid #a34e12; }
 .ksd-banner--warn .ksd-banner-eyebrow { color: #a34e12; }
 .ksd-banner--error { border-left: 5px solid #9c2b1f; }
@@ -98,7 +98,7 @@ _CSS = """
 .ksd-foot { margin-top: 44px; padding-top: 20px;
     border-top: 1px solid #e0d9c6; font-size: 13px; line-height: 1.6;
     color: #857e70; text-align: center; }
-:focus-visible { outline: 2px solid #a34e12; outline-offset: 2px; }
+:focus-visible { outline: 2px solid #0052ff; outline-offset: 2px; }
 @media (max-width: 640px) { .ksd-hero { font-size: 30px; } .ksd-wrap {
     padding: 32px 16px 56px; } }
 """

@@ -40,6 +40,9 @@ def test_landing_assets_serve(client: TestClient):
     favicon = client.get("/favicon.svg")
     assert "svg" in favicon.headers["content-type"]
     assert "<svg" in favicon.text
+    logo = client.get("/logo.png")
+    assert "image/png" in logo.headers["content-type"]
+    assert logo.content[:8] == b"\x89PNG\r\n\x1a\n"
 
 
 def test_health_and_unknown_paths(client: TestClient):

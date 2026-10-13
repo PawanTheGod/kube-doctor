@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Diagnostic Workspace — Kube Snapshot Doctor</title>
 <meta name="description" content="Run an evidence-based Kubernetes diagnosis. Read-only: no cluster access, no command execution.">
+<meta name="theme-color" content="#101c33">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/workspace.css">
 </head>
@@ -12,9 +13,8 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <div class="wrap topbar-row">
-    <a class="wordmark" href="/" aria-label="Back to overview">
-      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="4" width="24" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="16" cy="16" r="4.5" fill="currentColor"/></svg>
-      <span>Kube Snapshot Doctor</span>
+    <a class="wordmark" href="/" aria-label="Kube Doctor home">
+      <span class="logo-chip"><img src="/logo.png" alt="Kube Doctor"></span>
     </a>
     <p class="crumbs" aria-label="Breadcrumb">Console&nbsp;/&nbsp;Diagnostic Workspace</p>
     <div class="top-badges">
@@ -46,7 +46,7 @@
             <input type="file" id="file" accept=".png,.jpg,.jpeg,.webp,.gif,.bmp" hidden>
             <div class="drop-idle" id="dropIdle">
               <p class="drop-cta">Drop a screenshot here, click to browse, or paste from clipboard</p>
-              <p class="drop-hint" id="dz-hint">PNG · JPG · WEBP · GIF · BMP · up to 15 MB. kubectl tables, describe output, Grafana panels, consoles.</p>
+              <p class="drop-hint" id="dz-hint">PNG · JPG · WEBP · GIF · BMP · up to 15 MB. kubectl tables, describe output, Grafana panels, consoles. Pasting works anywhere on this page.</p>
             </div>
             <div class="drop-file" id="dropFile" hidden>
               <img id="preview" alt="Selected screenshot preview">
@@ -60,7 +60,7 @@
         <div class="panel">
           <label class="fld-label" for="logs">Logs, pod events, or error messages <span class="opt">optional</span></label>
           <textarea id="logs" rows="6" placeholder="kubectl logs &lt;pod&gt; --previous --tail=200" maxlength="200000"></textarea>
-          <p class="hint-row"><span>Secrets in log text are redacted before any model call.</span><span id="logCount">0 chars</span></p>
+          <p class="hint-row"><span>Secrets in log text are redacted before any model call.</span><span><span id="signalCount" class="signal"></span><span id="logCount">0 chars</span></span></p>
         </div>
 
         <details class="panel adv">
@@ -91,10 +91,12 @@
       </div>
       <div id="out" hidden>
         <div class="banner" id="banner"></div>
+        <p class="muted" id="runFlags" hidden></p>
         <div class="panel"><h3>Summary</h3><p id="summary"></p></div>
         <div class="panel"><h3>Ranked causes</h3><ol id="causes"></ol></div>
         <div class="panel"><h3>Recommended next steps</h3><ol id="steps"></ol></div>
         <div class="panel"><h3>Missing info</h3><ul id="missing"></ul><p class="muted" id="redactNote" hidden></p></div>
+        <button class="btn btn-ghost" id="copyReport" type="button" hidden>Copy full report</button>
       </div>
     </section>
 
