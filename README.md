@@ -5,8 +5,8 @@
 ![python](https://img.shields.io/badge/python-3.11%2B-blue.svg)
 ![evals](https://img.shields.io/badge/evals-8%20cases-blue.svg)
 
-> Replace `AdiB1619` in the badge links and in `pyproject.toml` with your GitHub
-> organisation before publishing.
+> Forkers: replace `AdiB1619` with your GitHub organisation in the badge links and
+> in `pyproject.toml` before publishing.
 
 Give it a screenshot of a failing Kubernetes workload — a `kubectl get pods`
 table, a `describe` dump, a Grafana panel, k9s, Lens, a cloud console — plus
@@ -38,24 +38,32 @@ observations so a bad diagnosis can be traced to a bad transcription.
 
 ## Verification status
 
-The pipeline, the CLI, and the eval harness are tested. **The model has not been
-tested**, because the endpoint that serves it was returning errors throughout
-development. Read the table before you quote any number from this repository.
+The pipeline, the CLI, and the eval harness are tested. The model side is
+partly exercised: a single live call has been made, and CI has no credentials,
+so the model is not *benchmarked*. Read the table before you quote any number
+from this repository.
 
 | Verified | Not yet verified |
 | --- | --- |
-| Unit and integration tests, run against fake backends (280 passing) | A live Gemma 4 call through the Gemini API — every attempt during development returned `500` or `504` |
-| `ruff check .` and `ruff format --check .` | Model accuracy on the eval fixtures, for the reason above |
-| Wheel builds and installs | A local Ollama run (the `openai-compat` path has not been exercised end to end) |
-| `SKILL.md` validated against the Agent Skills rules | Whether any specific model id answers these two prompts usefully |
-| The offline eval harness, end to end with scripted replies | |
+| Unit and integration tests, run against fake backends (293 passing) | A local Ollama run (the `openai-compat` path has not been exercised end to end) |
+| `ruff check .` and `ruff format --check .` | Whether the live model is accurate enough to trust on a real incident |
+| Wheel builds and installs | |
+| `SKILL.md` validated against the Agent Skills rules | |
+| The offline eval harness, end to end with scripted replies (what CI runs) | |
+| A full eval sweep with `gemma-4-26b-a4b-it` over all 8 fixtures: 100% top-1 category accuracy, 3 invented resource names (see below) | |
+| One live end-to-end CLI call with `gemma-4-31b-it` on the `oom-exit-137` fixture, producing a correct `oom_killed` diagnosis (no retry needed) | |
 
-The **100% in [evals/results.md](evals/results.md) is not a model result.** It
-comes from a scripted backend that echoes each fixture's own expected answer, so
-it measures the harness and the scoring, not a model's judgement. It is what CI
-runs, because CI has no credentials and there is no honest way to score a model
-offline. The first real `--backend gemini` run will replace that number with a
-much smaller one.
+A full sweep with the **Flash** variant of Gemma 4 (`gemma-4-26b-a4b-it`)
+over all eight fixtures is recorded in [evals/results.md](evals/results.md). It
+scores 100% top-1 category accuracy, but the hallucination check flags three
+invented resource names — pod names that appear in the screenshot's `kubectl`
+output but are absent from the text logs that make up the eval's input corpus:
+`checkout-6f9c7d8b45-2xklm`, `frontend-84c6d7f5b-x9k2m`, and
+`batch-worker-5d97b6c8f4-hm4pq`. These are not wrong categories, just names the
+model transcribed from the image that the text-only hallucination heuristic
+cannot attribute to the inputs. Judge the model on your own screenshots before
+trusting it, and read the `Model:` line on every run: it records which model
+actually produced the diagnosis.
 
 ## Ten-second demo
 
@@ -269,9 +277,9 @@ than the one you are evaluating, so the harness prints them, explains why, and
 leaves `evals/results.md` untouched. Published results have to come from the
 primary model alone.
 
-See `evals/results.md` for the recorded numbers, and note which backend produced
-them. The CI run uses a scripted offline backend: it exercises the harness and
-the scoring, and says nothing about model accuracy.
+See `evals/results.md` for the recorded Flash numbers. CI runs only the scripted
+offline backend (`--backend fake`): it exercises the harness and the scoring,
+and says nothing about model accuracy.
 
 To add a case, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
